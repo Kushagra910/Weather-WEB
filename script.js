@@ -8,6 +8,12 @@ const loadingScreen = document.querySelector(".loading-container");
 const userInfoContainer = document.querySelector(".user-info-container");
 const handleError = document.querySelector("[ERROR]");
 
+var sound1 = new Audio();
+sound1.src = "assets/orient-string-138428.mp3";
+
+var sound2 = new Audio();
+sound2.src = "assets/mixkit-arcade-game-jump-coin-216.wav";
+
 let currTab = userTab;
 const API_KEY = "1427669c5af670ee726814c6d5e6a88d";
 currTab.classList.add("current-tab");
