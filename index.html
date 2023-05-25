@@ -35,7 +35,7 @@
           />
           <p>Grant Location Access</p>
           <p>Allow access to get weather Information</p>
-          <button  onmousedown="sound1.play()" class="btn" data-grantAccess>
+          <button  onmousedown="sound1.play()"  class="btn" data-grantAccess>
             <p class="btn-text">Grant Access</p>
           </button>
         </div>
@@ -99,14 +99,14 @@
       </div>
 
       <!--error handling-->
-      <div class="sub-container error" ERROR>
+      <div id="error" class="error-container">
         <img
           src="./assets/not-found.png"
           alt="error 404"
           width="350px"
           height="350px"
         />
-        <p>Error Not Found</p>
+        <p> Error Not Found</p>
       </div>
     </div>
     <script src="./script.js"></script>
