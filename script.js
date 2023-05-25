@@ -6,7 +6,7 @@ const grantAccessContainer = document.querySelector(".grant-location-container")
 const searchForm = document.querySelector("[data-searchForm]");
 const loadingScreen = document.querySelector(".loading-container");
 const userInfoContainer = document.querySelector(".user-info-container");
-const handleError = document.querySelector("[ERROR]");
+const handleError = document.querySelector("#error");
 
 var sound1 = new Audio();
 sound1.src = "assets/orient-string-138428.mp3";
@@ -75,6 +75,9 @@ function getfromSessionStorage(){
       const response = await fetch(
         `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`
       );
+      if(!response.ok){
+        throw new Error("Failed to fetch weather Data");
+      }
       const data = await response.json();
       loadingScreen.classList.remove("active");
       userInfoContainer.classList.add("active");
@@ -86,6 +89,8 @@ function getfromSessionStorage(){
       // do yourself
       userInfoContainer.classList.remove("active");
       grantAccessContainer.classList.add("active");
+      handleError.classList.add("visible");
+      console.error(err);
     }
  }
 
@@ -151,16 +156,20 @@ function getfromSessionStorage(){
       const response = await fetch(
         `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`
       );
+      if (!response.ok) {
+        throw new Error("Failed to fetch weather data");
+      }
       const data = await response.json();
       loadingScreen.classList.remove("active");
-      handleError.classList.remove("active");
+      handleError.classList.remove("visible");
       userInfoContainer.classList.add("active");
       renderWeatherInfo(data);
     }
     catch(err){
       //handle it
+      loadingScreen.classList.remove("active");
       userInfoContainer.classList.remove("active");
-      userContainer.classList.remove("active")
-      handleError.classList.add("active");
+      handleError.classList.add("visible");
+      console.error(err);
     }
  }
